@@ -2,7 +2,7 @@ use warnings;
 use strict;
 package Mojolicious::Plugin::Mongodb;
 use Mojo::Base 'Mojolicious::Plugin';
-use MongoDB;
+use MongoDB 0.701.4;
 use MongoDB::Collection;
 
 sub register {
@@ -100,7 +100,7 @@ has '_conn';
 sub init {
     my $self = shift;
     
-    $self->_conn(MongoDB::Connection->new($self->mongo_conf));
+    $self->_conn(MongoDB::MongoClient->new($self->mongo_conf));
 }
 
 sub db {
